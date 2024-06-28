@@ -13,11 +13,19 @@ import javax.servlet.http.HttpSession;
 import model.CartItem;
 
 /**
- *
+ * UpdateCart_Dispatcher class implementing the Dispatcher interface.
+ * This class handles updating the shopping cart based on user input, such as 
+ * removing items or updating item quantities.
  * @author souza
  */
 public class UpdateCart_Dispatcher implements Dispatcher {
-      @Override
+
+    /**
+     *
+     * @param request
+     * @return nextPage
+     */
+    @Override
     public String execute(HttpServletRequest request){
 
         HttpSession session = request.getSession();

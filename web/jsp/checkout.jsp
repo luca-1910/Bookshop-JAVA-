@@ -1,3 +1,10 @@
+<%@ page import="model.*" %>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html>
 
     <head>
@@ -5,9 +12,6 @@
 
     </head>
 
-    <%@ page import="model.*" %>
-    <%@ page import="java.util.*"%>
-    <%@ page import="java.text.*"%>
 
     <body>
 
@@ -24,28 +28,18 @@
                     </td>
                 </tr>
 
-                <%
-                    Map items = (Map) session.getAttribute("cart");
-                    Set entries = items.entrySet();
-                    Iterator iter = entries.iterator();
-                    double totalCostOfOrder = 0.00;
-                    Book book = null;
-                    CartItem item = null;
+               <c:set var="items" value="${sessionScope.cart}" />
+                <c:set var="totalCostOfOrder" value="0.00" />
+                <c:forEach var="entry" items="${items.entrySet()}">
+                    <c:set var="item" value="${entry.value}" />
+                    <c:set var="cost" value="${item.orderCost}" />
+                    <c:set var="totalCostOfOrder" value="${totalCostOfOrder + cost}" />
+                    <tr>
+                        <td bgcolor="#F0F0F0"><c:out value="${item}" /></td>
+                    </tr>
+                </c:forEach>
+                <c:set var="totalOrderInDollars" value="${totalCostOfOrder}" />
 
-                    while (iter.hasNext()) {
-                        Map.Entry entry = (Map.Entry) iter.next();
-                        item = (CartItem) entry.getValue();
-                        double cost = item.getOrderCost();
-                        totalCostOfOrder += cost;
-                %>
-                <tr>
-                    <td bgcolor="#F0F0F0"><%= item%></td>
-                </tr>
-                <%
-                    } // end while
-                    DecimalFormat dollars = new DecimalFormat("0.00");
-                    String totalOrderInDollars = (dollars.format(totalCostOfOrder));
-                %>  
 
             </table>
 
@@ -124,7 +118,7 @@
                 <tr>
                     <td class = "right bold">Order Amount $</td>
                     <td>
-                        <input type="text" name="amount" value=<%= totalOrderInDollars%> />
+                         <input type="text" name="amount" value="<fmt:formatNumber value='${totalOrderInDollars}' type='currency' />" />
                     </td>
                 </tr>
             </table>

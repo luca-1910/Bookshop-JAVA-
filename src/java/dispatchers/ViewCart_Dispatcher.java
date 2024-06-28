@@ -14,7 +14,13 @@ import javax.servlet.http.HttpSession;
  * @author souza
  */
 public class ViewCart_Dispatcher implements Dispatcher {
-      @Override
+
+    /**
+     *
+     * @param request
+     * @return nextPage = "/jsp/titles.jsp"
+     */
+    @Override
     public String execute(HttpServletRequest request){
         HttpSession session = request.getSession();
         

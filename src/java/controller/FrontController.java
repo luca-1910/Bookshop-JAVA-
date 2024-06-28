@@ -33,6 +33,7 @@ public class FrontController extends HttpServlet {
     /**
      *
      * @param config
+     * @throws javax.servlet.ServletException
      */
         public void init(ServletConfig config) throws ServletException {
         super.init(config);

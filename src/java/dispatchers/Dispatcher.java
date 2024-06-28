@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 public interface Dispatcher {
+
+    /**
+     *
+     * @param request
+     * @return execute method
+     */
     public String execute (HttpServletRequest request);
 
 

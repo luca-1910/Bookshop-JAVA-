@@ -14,11 +14,18 @@ import model.Book;
 import model.CartItem;
 
 /**
- *
+ * AddToCart_Dispatcher class implementing the Dispatcher interface.
+ * This class handles requests to add books to the shopping cart. It manages
+ * the cart items and updates quantities based on user input.
  * @author souza
  */
 public class AddToCart_Dispatcher implements Dispatcher {
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();

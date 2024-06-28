@@ -15,14 +15,22 @@ import model.Book;
 //import utility.AdmitBookStoreDAO;
 
 /**
- *
+ * Title_Dispatcher class implementing the Dispatcher interface.
+ * This class is responsible for handling requests to display book titles.
+ * It interacts with the persistence layer to fetch book data and sets the 
+ * data in the session for the JSP to display.
  * @author souza
  */
 public class Title_Dispatcher implements Dispatcher {
     private EntityManagerFactory emf;
     private EntityManager em;
     
-      @Override
+    /**
+     *
+     * @param request
+     * @return nextPage
+     */
+    @Override
     public String execute(HttpServletRequest request){
         
         
